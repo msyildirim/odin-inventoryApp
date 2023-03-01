@@ -8,7 +8,7 @@ exports.index = function (req, res, next) {
             path: 'model',
             populate: {
                 path: 'make',
-                model: 'Make'
+                model: 'Make'                
             }
         })
         .exec(
@@ -18,7 +18,8 @@ exports.index = function (req, res, next) {
             }
             res.render('index', {
                 title: "Car dealor inventory",
-                car_instances: list_carInstances
+                car_instances: list_carInstances,
+                car_image_path: "/images/corolla.jpg"
             })
         }
 

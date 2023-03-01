@@ -7,6 +7,7 @@ block content
   div.car-frame 
     each car in car_instances 
       div.car-container 
+        img(src= car_image_path, alt="", srcset="")
         p #{car.plate}
         p #{car.model.make.name}
         p #{car.model.name}
