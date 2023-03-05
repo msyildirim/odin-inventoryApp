@@ -1,0 +1,11 @@
+extends layout
+block indexcss 
+  link(rel="stylesheet" href="/stylesheets/indexcss.css")
+block content
+  h1 #{tile} #{car_instance.plate} - #{car_instance.model.make.name} - #{car_instance.model.name}
+  p Do you really want to delete this book instance? 
+  
+  form(action="", method="post") 
+    div.form-group 
+    input(type="hidden", name="carinstanceid", required=true value=car_instance.id)
+    button.btn.btn-primary(type="submit") Delete

@@ -1,0 +1,42 @@
+extends layout
+block indexcss 
+  link(rel="stylesheet" href="/stylesheets/indexcss.css")
+block content
+  h1 #{title}
+  form(action="", method="POST" enctype="multipart/form-data") 
+    div.form-group 
+      label(for="make") Make
+      select#make.form-control(type="select", name="make", placeholder="Select make", required=true) 
+        for make in makes 
+          if(car)
+            option(value=make._id, selected=(car.model.make._id.toString()===make._id.toString() ? 'selected' : false)) #{make.name} 
+          else
+            option(value=make._id) #{make.name} 
+
+    .form-group 
+      label(for="model") Model 
+      select#model.form-control(type="select", name="model", placeholder='Select model', required=true)  
+        for model in models 
+            if(car)
+               option(value=model._id, selected=(car.model._id.toString()===model._id.toString() ? 'selected': false)) #{model.name}
+            else
+              option(value=model._id) #{model.name}
+
+    .form-grouup 
+      label(for="year") Year 
+      input#year.form-control(type="number", name="year" min="1900" max="2023" step="1" value=(car ? car.year : ''))
+
+    div.form-group 
+      label(for="plate") Plate
+      input#plate.form-control(type="text", placeholder="78AA00", name="plate", value= (car===undefined ? '11111111' : car.plate))
+
+    .form-group 
+      label(for="carimage") Image 
+      input#carimage.form-control-file(type="file", name="avatar") 
+
+    button.btn.btn-primary(type="submit") Submit
+
+    if errors
+        ul
+        for error in errors
+            li!= error.msg

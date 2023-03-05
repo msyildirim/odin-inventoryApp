@@ -4,12 +4,24 @@ block indexcss
 block content
   h1= title
   p Welcome too #{title}
-  div.car-frame 
-    each car in car_instances 
-      div.car-container 
-        img(src= car_image_path, alt="", srcset="")
-        p #{car.plate}
-        p #{car.model.make.name}
-        p #{car.model.name}
+  form(action="carinstances/deletelist", method="post") 
+    div.car-frame 
+      each car in car_instances 
+          div.car-container 
+            input.carselection(type="checkbox", name="selectedcars", value=car._id, id= "chckbx-" + car._id)
+            label(for="chckbx-" + car._id) 
+              if car.image 
+                img(src= car.image , alt="", srcset="")
+              else
+                img(src= car_image_path, alt="", srcset="")
+            p #{car.plate}
+            p #{car.model.make.name}
+            p #{car.model.name}
+            a(href= car.url) Details 
+    button(type="submit") Delete Selections
+
+  a(href="/carinstances" style="font-weight: bold") All List
+
+
         
     

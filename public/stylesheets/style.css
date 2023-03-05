@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -11,4 +14,9 @@ a {
   margin-top: 20px;
   padding: 0;
   list-style: none;
+}
+
+img {
+  max-width: 100%;
+  padding: 1%;
 }
