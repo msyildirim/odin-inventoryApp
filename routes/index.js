@@ -5,6 +5,7 @@ const multer = require('multer');
 var carInstanceController = require('../controllers/carInstanceController')
 var makesController = require('../controllers/makesController');
 var modelsController = require('../controllers/modelController');
+var signupController = require('../controllers/signupController');
 
 
 const upload = multer({ dest: 'public/uploads/' })
@@ -54,5 +55,17 @@ router.get('/makes', makesController.make_list)
 
 //GET request for list of all models
 router.get('/models', modelsController.model_list)
+
+//GET Sign-up
+router.get('/sign-up', (req, res) => res.render("sign-up-form"));
+
+//POST Sign-up
+router.post('/sign-up', signupController.signup_post)
+
+//POST Log-in
+router.post('/log-in', signupController.login_post)
+
+//GET Log-out
+router.get("/log-out", signupController.logout_get)
 
 module.exports = router;

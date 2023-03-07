@@ -6,8 +6,8 @@ const async = require("async");
 const multer  = require('multer')
 const upload = multer({ dest: 'public/images/' })
 
+//Display recently added 4 cars in index
 exports.index = function (req, res, next) {
-    console.log("inside index controller");
     CarInstance.find()
         .sort({'_id': -1})
         .limit(4)
@@ -26,7 +26,8 @@ exports.index = function (req, res, next) {
             res.render('index', {
                 title: "Car dealor inventory",
                 car_instances: list_carInstances,
-                car_image_path: "/images/corolla.jpg"
+                car_image_path: "/images/corolla.jpg",
+                user: req.user
             })
         }
 
@@ -53,7 +54,8 @@ exports.carinstance_list = function (req, res, next) {
                 res.render('index', {
                     title: "Car dealor inventory",
                     car_instances: list_carInstances,
-                    car_image_path: "/images/corolla.jpg"
+                    car_image_path: "/images/corolla.jpg",
+                    user: req.user
                 })
             }
     
@@ -78,7 +80,8 @@ exports.carinstance_detail = function (req, res, next) {
                 res.render('carinstance_detail', {
                     title: "Car details",
                     car_instance: carInstance,
-                    car_image_path: "/images/corolla.jpg"
+                    car_image_path: "/images/corolla.jpg",
+                    user: req.user
                 })
             }
         )
@@ -108,7 +111,8 @@ exports.create_get = function (req, res, next) {
             res.render('carinstance_form', {
                 title:"Create car instance",
                 makes: results.make_list,
-                models: results.model_list
+                models: results.model_list,
+                user: req.user
             })        
         }
     )
@@ -188,7 +192,8 @@ exports.delete_get = function (req, res, next) {
                 res.render('carinstance_delete', {
                     title: "Car details",
                     car_instance: carInstance,
-                    car_image_path: "/images/corolla.jpg"
+                    car_image_path: "/images/corolla.jpg",
+                    user: req.user
                 })
             }
         )
@@ -243,7 +248,8 @@ exports.update_get = function (req, res, next) {
                 title:"Update car instance",
                 makes: results.makes,
                 models: results.models,
-                car: results.carinstance
+                car: results.carinstance,
+                user: req.user
             })
         }
     )
